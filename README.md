@@ -8,7 +8,7 @@
 
 - **Create financial goals** with target amounts, currencies (UAH, USD, EUR), and target dates
 - **Edit and delete goals** with an intuitive interface
-- **Optional categories** for organizing goals (e.g., Tech, Travel, Education)
+- **Optional categories** for organizing goals (e.g., Travel, Education)
 - **Accumulated amounts** - specify how much you've already saved toward each goal
 - **Automatic sorting** by target date for better planning
 
@@ -48,31 +48,24 @@
 
 ### Installation Steps
 
-1. **Clone the repository** (or download the project):
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/GFalcon-UA/finance-tracker.git
+   cd finance-tracker
+   ```
 
-```bash
-git clone <repository-url>
-cd finance-tracker
-```
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-1. **Install dependencies**:
+3. **Start the development server**:
+   ```bash
+   npm start
+   ```
 
-```bash
-npm install
-```
-
-1. **Start the development server**:
-
-```bash
-npm start
-# or
-ng serve
-```
-
-1. **Open in browser**:
-Navigate to `http://localhost:4200/`
-
-The application will automatically reload when you make changes to the source files.
+4. **Open in browser**:
+   Navigate to `http://localhost:4200/`.
 
 ---
 
@@ -91,7 +84,7 @@ When you first open the application, you'll see three main sections:
 1. Click the **"Add New Goal"** button (usually prominent on the interface)
 
 2. Fill in the goal details:
-   - **Goal Name** (required) - e.g., "New Laptop", "Vacation to Italy"
+   - **Goal Name** (required) - e.g., "New Car", "Vacation to Italy"
    - **Amount** (required) - the target amount you need
    - **Currency** - select UAH, USD, or EUR
    - **Accumulated Amount** (optional) - how much you've already saved for this goal in the selected currency
@@ -153,9 +146,10 @@ The plan automatically recalculates when you:
 
 ### Technology Stack
 
-- **Framework**: Angular 21.0.0
+- **Framework**: Angular 21.0.0 (Standalone)
 - **Language**: TypeScript 5.9.2
-- **Styling**: SCSS with modern CSS features
+- **Build Tool**: Angular CLI
+- **Styling**: SCSS with modern CSS features (Flexbox, Grid)
 - **Data Storage**: Browser LocalStorage
 - **Architecture**: Standalone components (modern Angular approach)
 
@@ -165,26 +159,32 @@ The plan automatically recalculates when you:
 src/
 ├── app/
 │   ├── components/
-│   │   ├── goal-form/          # Add/Edit goal form
-│   │   ├── goal-list/          # Display goals grid
-│   │   └── plan/               # Financial plan display
+│   │   ├── goal-form/
+│   │   │   └── goal-form.component.ts   # Add/Edit goal form
+│   │   ├── goal-list/
+│   │   │   └── goal-list.component.ts   # Display goals grid
+│   │   └── plan/
+│   │       └── plan.component.ts        # Financial plan display
 │   ├── models/
-│   │   └── goal.model.ts       # Goal data structure
+│   │   └── goal.model.ts                # Goal data structure
 │   ├── services/
-│   │   └── goal.service.ts     # Business logic & calculations
+│   │   └── goal.service.ts              # Business logic & calculations
 │   ├── pipes/
-│   │   └── remove-currency.pipe.ts  # Currency formatting
-│   └── app.ts                  # Main app component
-├── styles.scss                  # Global styles
-└── index.html                   # Entry point
+│   │   └── remove-currency.pipe.ts       # Currency formatting
+│   ├── app.ts                           # Main app component
+│   ├── app.html                         # App template
+│   └── app.config.ts                    # App configuration
+├── styles.scss                          # Global styles
+├── main.ts                              # Application entry point
+└── index.html                           # HTML entry point
 ```
 
 ### Key Components
 
-- **GoalFormComponent** - Reactive form for creating/editing goals with validation
-- **GoalListComponent** - Displays goals as cards with sorting and actions
-- **PlanComponent** - Calculates and displays the monthly financial plan
-- **GoalService** - Manages goal data, calculations, and LocalStorage operations
+- **GoalFormComponent** - Reactive form for creating/editing goals with validation and category suggestions.
+- **GoalListComponent** - Displays goals as cards with sorting, global savings input, and actions.
+- **PlanComponent** - Calculates and displays the monthly financial plan with a timeline.
+- **GoalService** - Central service for managing goal data, performing calculations, and handling LocalStorage.
 
 ### Calculation Algorithm
 
@@ -196,6 +196,8 @@ The financial plan uses a sophisticated algorithm that:
 4. Converts all amounts to base currency (UAH) for calculations
 5. Calculates cumulative expenses and required monthly savings
 6. Ensures you always save enough to meet future deadlines
+
+**Note**: The current version uses a fixed start date of **January 1, 2026**, for calculations to ensure consistency in planning (adjustable in `GoalService`).
 
 **Currency Conversion Rates** (currently hardcoded):
 
@@ -218,10 +220,18 @@ Navigate to `http://localhost:4200/`
 ### Build for Production
 
 ```bash
-ng build
+npm run build
 ```
 
 Build artifacts will be stored in the `dist/` directory.
+
+### Deployment
+
+The project is configured for automatic deployment to **GitHub Pages** via GitHub Actions.
+
+- **Workflow**: `.github/workflows/page.yml`
+- **Trigger**: Automatic deployment on every push to the `main` branch.
+- **URL**: The application is typically available at `https://<username>.github.io/finance-tracker/` (depending on your GitHub configuration).
 
 ### Code Scaffolding
 

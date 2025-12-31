@@ -14,7 +14,7 @@ import { GoalService } from '../../services/goal.service';
       <form [formGroup]="goalForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="name">Goal Name</label>
-          <input id="name" type="text" formControlName="name" placeholder="e.g., New Laptop">
+          <input id="name" type="text" formControlName="name" placeholder="e.g., Vacation to Italy">
         </div>
 
         <div class="form-row">
@@ -51,17 +51,17 @@ import { GoalService } from '../../services/goal.service';
           </div>
           <div class="form-group autocomplete-wrapper">
             <label for="category">Category (optional)</label>
-            <input 
-              id="category" 
-              type="text" 
-              formControlName="category" 
-              placeholder="e.g., Tech"
+            <input
+              id="category"
+              type="text"
+              formControlName="category"
+              placeholder="e.g., Travel"
               (input)="onCategoryInput()"
               (focus)="onCategoryInput()"
               (blur)="hideSuggestions()">
             <ul class="autocomplete-suggestions" *ngIf="showSuggestions && filteredCategories.length > 0">
-              <li 
-                *ngFor="let cat of filteredCategories" 
+              <li
+                *ngFor="let cat of filteredCategories"
                 (mousedown)="selectCategory(cat)"
                 class="suggestion-item">
                 {{ cat }}
@@ -138,7 +138,7 @@ import { GoalService } from '../../services/goal.service';
     }
     .form-group {
       margin-bottom: 1rem;
-      
+
       label {
         display: block;
         font-size: 0.875rem;
@@ -154,7 +154,7 @@ import { GoalService } from '../../services/goal.service';
         font-size: 1rem;
         transition: border-color 0.2s, box-shadow 0.2s;
         box-sizing: border-box;
-        
+
         &:focus {
           outline: none;
           border-color: #4f46e5;
@@ -186,11 +186,11 @@ import { GoalService } from '../../services/goal.service';
       padding: 0.75rem;
       cursor: pointer;
       transition: background-color 0.15s;
-      
+
       &:hover {
         background-color: #f3f4f6;
       }
-      
+
       &:not(:last-child) {
         border-bottom: 1px solid #e5e7eb;
       }
@@ -205,14 +205,14 @@ import { GoalService } from '../../services/goal.service';
       justify-content: flex-end;
       gap: 1rem;
       margin-top: 2rem;
-      
+
       button {
         padding: 0.75rem 1.5rem;
         border-radius: 8px;
         font-weight: 500;
         cursor: pointer;
         border: none;
-        
+
         &.btn-cancel {
           background: white;
           border: 1px solid #d1d5db;
@@ -235,7 +235,7 @@ import { GoalService } from '../../services/goal.service';
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 1rem;
-      
+
       input[type="checkbox"] {
         width: auto;
         margin: 0;
@@ -250,7 +250,7 @@ import { GoalService } from '../../services/goal.service';
       display: flex;
       gap: 0.5rem;
       align-items: center;
-      
+
       .prefix {
           color: #6b7280;
           font-size: 0.875rem;
@@ -260,7 +260,7 @@ import { GoalService } from '../../services/goal.service';
           width: 60px;
           min-width: 60px;
       }
-      
+
       .freq-select {
           flex: 1;
       }
@@ -269,11 +269,11 @@ import { GoalService } from '../../services/goal.service';
         position: relative;
         display: flex;
         align-items: center;
-        
+
         input {
             padding-right: 3.5rem; /* Make space for suffix */
         }
-        
+
         .currency-suffix {
             position: absolute;
             right: 1rem;
