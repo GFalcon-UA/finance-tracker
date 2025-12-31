@@ -1,0 +1,28 @@
+<div class="app-container">
+  <header>
+    <div class="header-content">
+      <h1>Financial Goal Tracker</h1>
+      <button (click)="openAddForm()" class="btn-primary">
+        + Add New Goal
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="content-grid">
+      <div class="left-panel">
+        <app-goal-list (edit)="openEditForm($event)"></app-goal-list>
+      </div>
+      <div class="right-panel">
+        <app-plan></app-plan>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Overlay -->
+  <div *ngIf="showForm" class="modal-overlay" (click)="closeForm()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <app-goal-form [goalToEdit]="goalToEdit" (close)="closeForm()"></app-goal-form>
+    </div>
+  </div>
+</div>
