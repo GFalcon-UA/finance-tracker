@@ -70,7 +70,7 @@ import { RemoveCurrencyPipe } from '../../pipes/remove-currency.pipe';
       border-radius: 12px;
       text-align: center;
       margin-bottom: 2rem;
-      
+
       h3 { margin: 0; font-weight: 500; opacity: 0.9; }
       .highlight-amount {
         font-size: 3rem;
@@ -87,7 +87,7 @@ import { RemoveCurrencyPipe } from '../../pipes/remove-currency.pipe';
       width: 100%;
       border-collapse: collapse;
       font-size: 0.875rem;
-      
+
       th {
         text-align: left;
         padding: 1rem;
@@ -104,7 +104,7 @@ import { RemoveCurrencyPipe } from '../../pipes/remove-currency.pipe';
         color: #374151;
       }
       tr:last-child td { border-bottom: none; }
-      
+
       .expense-badge {
         background: #fee2e2;
         color: #991b1b;
@@ -141,20 +141,29 @@ export class PlanComponent implements OnInit {
   }
 
   calculate() {
-    // Assuming calculation starts from Jan 2026 as per user example, 
-    // OR we should use current date? 
+    // Assuming calculation starts from Jan 2026 as per user example,
+    // OR we should use current date?
     // User said "Suppose calculation is done in Jan 2026".
     // I will use Jan 2026 for consistency with the example, or maybe current date?
     // "The current local time is: 2025-11-20".
     // If I use current date, the example won't match exactly.
     // But for a real app, it should be current date.
-    // However, to verify the user's example, I'll stick to Jan 2026 for now, 
+    // However, to verify the user's example, I'll stick to Jan 2026 for now,
     // or better, I'll use the current date but let's see.
     // Actually, the user said "Suppose calculation is done in Jan 2026".
     // I'll use a fixed date for now to match the example, but in a real app I'd use new Date().
     // Let's use Jan 2026 to ensure the math matches the user's expectation for verification.
     // I'll add a comment about this.
-    this.plan = this.goalService.calculatePlan(new Date(2026, 0, 1));
+    var currentDate = new Date();
+    var planDate: Date;
+    if (currentDate.getDate() < 29) {
+      planDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    } else {
+      var year = currentDate.getMonth() == 11 ? currentDate.getFullYear() + 1 : currentDate.getFullYear();
+      var month = currentDate.getMonth() == 11 ? 0 : currentDate.getMonth() + 1;
+      planDate = new Date(year, month, 1);
+    }
+    this.plan = this.goalService.calculatePlan(planDate);
     if (this.plan.length > 0) {
       this.currentRequiredSavings = this.plan[0].requiredSavings;
     } else {

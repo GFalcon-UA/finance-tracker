@@ -197,8 +197,6 @@ The financial plan uses a sophisticated algorithm that:
 5. Calculates cumulative expenses and required monthly savings
 6. Ensures you always save enough to meet future deadlines
 
-**Note**: The current version uses a fixed start date of **January 1, 2026**, for calculations to ensure consistency in planning (adjustable in `GoalService`).
-
 **Currency Conversion Rates** (currently hardcoded):
 
 - USD = 41 UAH
